@@ -93,11 +93,33 @@ public:
   // Return true when this disk_state is in alternating format. That means
   // that the first disk at index 0 is dark, the second disk at index 1
   // is light, and so on for the entire row of disks.
-  bool is_alternating() const {
-    // TODO: Write code for this function, including rewriting the return
-    // statement, and then delete these comments.
-    return false;
-  }
+  bool is_alternating() const 
+  {//is_alternating========================================================================================================
+	//for i= 0 to n do
+	for(size_t i = 0; i < _colors.size(); ++i)
+		{//for
+		//if i % 2 == 0 do
+		if((i % 2) == 0)
+			{//if
+			//if disk[i] == light return false
+			if(_colors[i] == DISK_LIGHT)
+				{
+				return false;
+				}
+			}//if
+		//else do
+		else
+			{//else
+			//if disk[i] == dark return false
+			if(_colors[i] == DISK_DARK)
+				{
+				return false;
+				}
+			}//else
+		}//for
+	//after for loop return true
+	return true;
+  }//is_alternating=========================================================================================================
 
   // Return true when this disk_state is fully sorted, with all light disks
   // on the right (high indices) and all dark disks on the left (low
