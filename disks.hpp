@@ -102,7 +102,7 @@ public:
 		if((i % 2) == 0)
 			{//if
 			//if disk[i] == light return false
-			if(_colors[i] == DISK_LIGHT)
+			if(_colors.get(i) == DISK_LIGHT)
 				{
 				return false;
 				}
@@ -111,7 +111,7 @@ public:
 		else
 			{//else
 			//if disk[i] == dark return false
-			if(_colors[i] == DISK_DARK)
+			if(_colors.get(i) == DISK_DARK)
 				{
 				return false;
 				}
@@ -136,7 +136,7 @@ public:
 			{//if light
 			//if this is the light half then the disks have to be light
 			//if even one disk on this half is dark then return false
-			if(_colors[i] == DISK_DARK)
+			if(_colors.get(i) == DISK_DARK)
 				{
 				return false;
 				}
@@ -147,7 +147,7 @@ public:
 			{//else
 			//check to see if it really is still dark
 			//if disk[i] == light stillDark = false
-			if(_colors[i] == DISK_LIGHT)
+			if(_colors.get(i) == DISK_LIGHT)
 				{//if light
 				stillDark = false;
 				}//if light
