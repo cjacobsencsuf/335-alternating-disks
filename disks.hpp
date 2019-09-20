@@ -185,22 +185,25 @@ public:
 };
 
 // Algorithm that sorts disks using the left-to-right algorithm.
-sorted_disks sort_left_to_right(const disk_state& before) {
-  // TODO: Write code for this function, including rewriting the return
-  // statement, and then delete these comments.
-  assert(before.is_alternating());
+sorted_disks sort_left_to_right(const disk_state& before) 
+{//sort_left_to_right
+  	// TODO: Write code for this function, including rewriting the return
+  	// statement, and then delete these comments.
+	// check that the input is in alternating format
+  	assert(before.is_alternating());
 
-  // TODO
-  return sorted_disks(before, 0);
-}
+  	// TODO
+  	return sorted_disks(before, 0);
+}//sort_left_to_right
 
 // Algorithm that sorts disks using the lawnmower algorithm.
-sorted_disks sort_lawnmower(const disk_state& before) {
-  // TODO: Write code for this function, including rewriting the return
-  // statement, and then delete these comments.
-  // check that the input is in alternating format
-  assert(before.is_alternating());
+sorted_disks sort_lawnmower(const disk_state& before) 
+{//sort_lawnmower
+  	// TODO: Write code for this function, including rewriting the return
+ 	// statement, and then delete these comments.
+ 	// check that the input is in alternating format
+ 	assert(before.is_alternating());
 
-  // TODO
-  return sorted_disks(before, 0);
-}
+	// TODO
+	return sorted_disks(before, 0);
+}//sort_lawnmower
