@@ -94,7 +94,7 @@ public:
   // that the first disk at index 0 is dark, the second disk at index 1
   // is light, and so on for the entire row of disks.
   bool is_alternating() const 
-  {//is_alternating========================================================================================================
+  {//is_alternating
 	//for i= 0 to n do
 	for(size_t i = 0; i < _colors.size(); ++i)
 		{//for
@@ -119,16 +119,44 @@ public:
 		}//for
 	//after for loop return true
 	return true;
-  }//is_alternating=========================================================================================================
+  }//is_alternating
 
   // Return true when this disk_state is fully sorted, with all light disks
   // on the right (high indices) and all dark disks on the left (low
   // indices).
-  bool is_sorted() const {
-    // TODO: Write code for this function, including rewriting the return
-    // statement, and then delete these comments.
-    return false;
-  }
+  bool is_sorted() const 
+  {//is_sorted
+	//starts on the dark half
+	bool stillDark = true;
+	//for i = 0 to n do
+	for(size_t i = 0; i < _colors.size(); ++i)
+		{//for
+		//first check for a possible return by seeing if it is the light half yet
+		if(!stillDark)
+			{//if light
+			//if this is the light half then the disks have to be light
+			//if even one disk on this half is dark then return false
+			if(_colors[i] == DISK_DARK)
+				{
+				return false;
+				}
+			}//if light
+		
+		//here we will check to see if stillDark needs to be turned to false yet
+		else
+			{//else
+			//check to see if it really is still dark
+			//if disk[i] == light stillDark = false
+			if(_colors[i] == DISK_LIGHT)
+				{//if light
+				stillDark = false;
+				}//if light
+			}//else
+		}//for
+    
+	//return true because all the tests have been passed
+	return true;
+  }//is_sorted
 };
 
 // Data structure for the output of the alternating disks problem. That
