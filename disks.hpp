@@ -44,7 +44,7 @@ public:
   }
 
   size_t total_count() const {
-    return _colors.size();
+    return _colors.size();	//sc 2
   }
 
   size_t light_count() const {
@@ -56,12 +56,12 @@ public:
   }
 
   bool is_index(size_t i) const {
-    return (i < total_count());
+    return (i < total_count());	//sc 4
   }
 
-  disk_color get(size_t index) const {
-    assert(is_index(index));
-    return _colors[index];
+  disk_color get(size_t index) const {	//sc 6
+    assert(is_index(index));	//sc 5
+    return _colors[index];	//sc 1
   }
 
   void swap(size_t left_index) {
