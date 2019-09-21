@@ -125,37 +125,38 @@ public:
   // on the right (high indices) and all dark disks on the left (low
   // indices).
   bool is_sorted() const 
-  {//is_sorted
+  {//is_sorted	sc 10n+1+1 = 10n+2
 	//starts on the dark half
-	bool stillDark = true;
-	//for i = 0 to n do
-	for(size_t i = 0; i < _colors.size(); ++i)
+	bool stillDark = true;	//sc 1
+	//for i = 0 to n do	sc 10n
+	for(size_t i = 0; i < _colors.size(); ++i)//sc n
 		{//for
 		//first check for a possible return by seeing if it is the light half yet
-		if(!stillDark)
-			{//if light
+		//if still dark sc 1+max(8,9) = 1+9 = 10
+		if(!stillDark)	//sc 1
+			{//if light	sc max(8,7) = 8
 			//if this is the light half then the disks have to be light
 			//if even one disk on this half is dark then return false
-			if(_colors.get(i) == DISK_DARK)
+			if(_colors.get(i) == DISK_DARK)//sc 7
 				{
-				return false;
+				return false;	//sc 1
 				}
 			}//if light
 		
 		//here we will check to see if stillDark needs to be turned to false yet
-		else
-			{//else
+		else	//sc 8+1 = 9
+			{//else	sc 1
 			//check to see if it really is still dark
-			//if disk[i] == light stillDark = false
-			if(_colors.get(i) == DISK_LIGHT)
+			//if disk[i] == light stillDark = false	sc max(8,7) = 8
+			if(_colors.get(i) == DISK_LIGHT)//sc 7
 				{//if light
-				stillDark = false;
+				stillDark = false;	//sc 1
 				}//if light
 			}//else
 		}//for
     
 	//return true because all the tests have been passed
-	return true;
+	return true;	//sc 1
   }//is_sorted
 };
 
