@@ -94,31 +94,31 @@ public:
   // that the first disk at index 0 is dark, the second disk at index 1
   // is light, and so on for the entire row of disks.
   bool is_alternating() const 
-  {//is_alternating
-	//for i= 0 to n do
-	for(size_t i = 0; i < _colors.size(); ++i)
+  {//is_alternating	sc 11n+1
+	//for i= 0 to n do	sc 11n
+	for(size_t i = 0; i < _colors.size(); ++i)	//sc n
 		{//for
-		//if i % 2 == 0 do
-		if((i % 2) == 0)
+		//if i % 2 == 0 do	sc 2+max(8,9) = 2+9 = 11
+		if((i % 2) == 0)	//sc 2
 			{//if
-			//if disk[i] == light return false
-			if(_colors.get(i) == DISK_LIGHT)
+			//if disk[i] == light return false sc max(8,7) = 8
+			if(_colors.get(i) == DISK_LIGHT) //sc 7
 				{
-				return false;
+				return false;	//sc 1
 				}
 			}//if
-		//else do
-		else
+		//else do	sc 8+1 = 9
+		else	//sc 1
 			{//else
-			//if disk[i] == dark return false
-			if(_colors.get(i) == DISK_DARK)
+			//if disk[i] == dark return false  sc max(8,7) = 8
+			if(_colors.get(i) == DISK_DARK)	//sc 7
 				{
-				return false;
+				return false;	//sc 1
 				}
 			}//else
 		}//for
 	//after for loop return true
-	return true;
+	return true;	//sc 1
   }//is_alternating
 
   // Return true when this disk_state is fully sorted, with all light disks
