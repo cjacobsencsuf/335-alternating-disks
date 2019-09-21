@@ -64,11 +64,11 @@ public:
     return _colors[index];	//sc 1
   }
 
-  void swap(size_t left_index) {
-    assert(is_index(left_index));
-    auto right_index = left_index + 1;
-    assert(is_index(right_index));
-    std::swap(_colors[left_index], _colors[right_index]);
+  void swap(size_t left_index) {	//sc 5+2+5+1 = 13
+    assert(is_index(left_index));	//sc 4+1 = 5
+    auto right_index = left_index + 1;	//sc 2
+    assert(is_index(right_index));	//sc 4+1 = 5
+    std::swap(_colors[left_index], _colors[right_index]);	//sc 1
   }
 
   std::string to_string() const {
