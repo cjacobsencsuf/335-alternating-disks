@@ -217,11 +217,41 @@ sorted_disks sort_left_to_right(const disk_state& before)
 // Algorithm that sorts disks using the lawnmower algorithm.
 sorted_disks sort_lawnmower(const disk_state& before) 
 {//sort_lawnmower
-  	// TODO: Write code for this function, including rewriting the return
- 	// statement, and then delete these comments.
- 	// check that the input is in alternating format
- 	assert(before.is_alternating());
+  	// check that the input is in alternating format
+  	assert(before.is_alternating());
 
-	// TODO
-	return sorted_disks(before, 0);
+	unsigned numSwaps = 0;
+
+	//while ! is sorted do
+	while(!before.is_sorted())
+		{//while
+		//for i = 0 to n do
+		for(size_t i = 0; i < before.size(); ++i)
+			{//for
+			//if current disk is light and the next is dark then swap
+			//if (disk[i] == light) && (disk[i+1] == dark) do
+			if((before.get(i) == DISK_LIGHT)&&(before.get(i+1) == DISK_DARK))
+				{//if
+				++numSwaps;
+				
+				//swap disk[i] and disk[i+1]
+				before.swap(i);
+				}//if
+			}//for
+		//for i = n - 1 to 0 do
+		for(size_t i = before.size() - 1; i > 0; --i)
+			{//for
+			//if current disk is dark and the left is light then swap
+			//if(disk[i] == dark) && (disk[i-1] == light) do
+			if((before.get(i) == DISK_DARK)&&(before.get(i-1) == DISK_LIGHT))
+				{//if
+				++numSwaps;
+
+				//swap disk[i] and disk[i-1]
+				before.swap(i-1);
+				}//if
+			}//for
+		}//while
+
+  	return sorted_disks(before, numSwaps);
 }//sort_lawnmower
