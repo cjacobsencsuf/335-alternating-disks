@@ -233,33 +233,49 @@ sorted_disks sort_lawnmower(const disk_state& before)
 
 	unsigned numSwaps = 0;
 
+	//make a string to get the length
+	string diskString = before.to_string();
+	
+	//get the length
+	size_t stringLen = diskString.length();	
+
 	//while ! is sorted do
 	while(!before.is_sorted())
 		{//while
 		//for i = 0 to n do
-		for(size_t i = 0; i < before.size(); ++i)
+		for(size_t i = 0; i < stringLen; ++i)
+		//for(size_t i = 0; i < before.size(); ++i)
 			{//for
 			//if current disk is light and the next is dark then swap
 			//if (disk[i] == light) && (disk[i+1] == dark) do
-			if((before.get(i) == DISK_LIGHT)&&(before.get(i+1) == DISK_DARK))
+			if((&diskString.at(i) == "L")&&(&diskString.at(i+1) == "D"))
+			//if((before[i] == DISK_LIGHT)&&(before[i+1] == DISK_DARK))
 				{//if
 				++numSwaps;
 				
 				//swap disk[i] and disk[i+1]
 				before.swap(i);
+
+				//update the string
+				diskString = before.to_string();
 				}//if
 			}//for
-		//for i = n - 1 to 0 do
-		for(size_t i = before.size() - 1; i > 0; --i)
+		//for j = n - 1 to 0 do
+		for(size_t j = stringLen - 1; j > 0; --j)
+		//for(size_t j = before.size() - 1; j > 0; --j)
 			{//for
 			//if current disk is dark and the left is light then swap
-			//if(disk[i] == dark) && (disk[i-1] == light) do
-			if((before.get(i) == DISK_DARK)&&(before.get(i-1) == DISK_LIGHT))
+			//if(disk[j] == dark) && (disk[j-1] == light) do
+			if((&diskString.at(j) == "D")&&(&diskString.at(j-1) == "L"))
+			//if((before[j] == DISK_DARK)&&(before[j-1] == DISK_LIGHT))
 				{//if
 				++numSwaps;
 
-				//swap disk[i] and disk[i-1]
-				before.swap(i-1);
+				//swap disk[j] and disk[j-1]
+				before.swap(j-1);
+
+				//update the string
+				diskString = before.to_string();
 				}//if
 			}//for
 		}//while
