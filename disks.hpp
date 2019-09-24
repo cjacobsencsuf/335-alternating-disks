@@ -193,20 +193,31 @@ sorted_disks sort_left_to_right(const disk_state& before)
 
 	unsigned numSwaps = 0;
 
+	//make a string to get the length
+	string diskString = before.to_string();
+	
+	//get the length
+	size_t stringLen = diskString.length();	
+	
 	//while ! is sorted do
 	while(!before.is_sorted())
 		{//while
 		//for i = 0 to n do
-		for(size_t i = 0; i < before.size(); ++i)
+		for(size_t i = 0; i < stringLen; ++i)
+		//for(size_t i = 0; i < before.size(); ++i)
 			{//for
 			//if current disk is light and the next is dark then swap
 			//if (disk[i] == light) && (disk[i+1] == dark) do
-			if((before.get(i) == DISK_LIGHT)&&(before.get(i+1) == DISK_DARK))
+			if((&diskString.at(i) == "L")&&(&diskString.at(i+1) == "D"))
+			//if((before[i] == DISK_LIGHT)&&(before[i+1] == DISK_DARK))
 				{//if
 				++numSwaps;
 				
 				//swap disk[i] and disk[i+1]
 				before.swap(i);
+
+				//update the string
+				diskString = before.to_string();
 				}//if
 			}//for
 		}//while
