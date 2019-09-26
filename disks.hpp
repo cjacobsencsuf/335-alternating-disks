@@ -44,7 +44,7 @@ public:
   }
 
   size_t total_count() const {
-    return _colors.size();	//sc 2
+    return _colors.size();
   }
 
   size_t light_count() const {
@@ -56,19 +56,19 @@ public:
   }
 
   bool is_index(size_t i) const {
-    return (i < total_count());	//sc 4
+    return (i < total_count());
   }
 
-  disk_color get(size_t index) const {	//sc 6
-    assert(is_index(index));	//sc 5
-    return _colors[index];	//sc 1
+  disk_color get(size_t index) const {
+    assert(is_index(index));
+    return _colors[index];
   }
 
-  void swap(size_t left_index) {	//sc 5+2+5+1 = 13
-    assert(is_index(left_index));	//sc 4+1 = 5
-    auto right_index = left_index + 1;	//sc 2
-    assert(is_index(right_index));	//sc 4+1 = 5
-    std::swap(_colors[left_index], _colors[right_index]);	//sc 1
+  void swap(size_t left_index) {
+    assert(is_index(left_index));
+    auto right_index = left_index + 1;
+    assert(is_index(right_index));
+    std::swap(_colors[left_index], _colors[right_index]);
   }
 
   std::string to_string() const {
@@ -94,40 +94,40 @@ public:
   // that the first disk at index 0 is dark, the second disk at index 1
   // is light, and so on for the entire row of disks.
   bool is_alternating() const 
-  {//is_alternating	sc 11n+1
-	//for i= 0 to n do	sc 11n
-	for(size_t i = 0; i < _colors.size(); ++i)	//sc n
+  {//is_alternating
+	//for i= 0 to n do
+	for(size_t i = 0; i < _colors.size(); ++i)
 		{//for
-		//if i % 2 == 0 do	sc 2+max(8,9) = 2+9 = 11
-		if((i % 2) == 0)	//sc 2
+		//if i % 2 == 0 do
+		if((i % 2) == 0)
 			{//if
-			//if disk[i] == light return false sc max(8,7) = 8
-			if(_colors[i] == DISK_LIGHT) //sc 7
+			//if disk[i] == light return false
+			if(_colors[i] == DISK_LIGHT)
 				{
-				return false;	//sc 1
+				return false;
 				}
 			}//if
-		//else do	sc 8+1 = 9
-		else	//sc 1
+		//else do
+		else
 			{//else
-			//if disk[i] == dark return false  sc max(8,7) = 8
-			if(_colors[i] == DISK_DARK)	//sc 7
+			//if disk[i] == dark return false
+			if(_colors[i] == DISK_DARK)
 				{
-				return false;	//sc 1
+				return false;
 				}
 			}//else
 		}//for
 	//after for loop return true
-	return true;	//sc 1
+	return true;
   }//is_alternating
 
   // Return true when this disk_state is fully sorted, with all light disks
   // on the right (high indices) and all dark disks on the left (low
   // indices).
   bool is_sorted() const 
-  {//is_sorted	sc 10n+1+1 = 10n+2
+  {//is_sorted
 	//starts on the dark half
-	bool stillDark = true;	//sc 1
+	bool stillDark = true;
 	//for i = 0 to n do	
 	for(size_t i = 0; i < _colors.size() / 2; ++i)
 		{//for
@@ -135,7 +135,6 @@ public:
 		//if disk[i] == light return false
 		if(_colors[i] == DISK_LIGHT)
 			{
-			//cout << "is sorted light disk on dark side return false\n";
 			return false;
 			}
 		}//for
@@ -194,7 +193,7 @@ sorted_disks sort_left_to_right(const disk_state& before)
 	while(!newDisks.is_sorted())
 		{//while
 		//for i = 0 to n do
-		for(size_t i = 0; i < newDisks.total_count(); ++i)
+		for(size_t i = 0; i < newDisks.total_count() - 1; ++i)
 			{//for
 			//if current disk is light and the next is dark then swap
 			//if (disk[i] == light) && (disk[i+1] == dark) do
@@ -226,7 +225,7 @@ sorted_disks sort_lawnmower(const disk_state& before)
 	while(!newDisks.is_sorted())
 		{//while
 		//for i = 0 to n do
-		for(size_t i = 0; i < newDisks.total_count(); ++i)
+		for(size_t i = 0; i < newDisks.total_count() - 1; ++i)
 			{//for
 			//if current disk is light and the next is dark then swap
 			//if (disk[i] == light) && (disk[i+1] == dark) do
@@ -239,7 +238,7 @@ sorted_disks sort_lawnmower(const disk_state& before)
 				}//if
 			}//for
 		//for i = n - 1 to 0 do
-		for(size_t i = newDisks.total_count() - 1; i > 0; --i)
+		for(size_t i = newDisks.total_count() - 1; i > 1; --i)
 			{//for
 			//if current disk is dark and the left is light then swap
 			//if(disk[i] == dark) && (disk[i-1] == light) do
