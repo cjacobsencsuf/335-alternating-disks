@@ -130,7 +130,7 @@ public:
 	bool stillDark = true;
 	//for i = 0 to n/2 do	
 	for(size_t i = 0; i < _colors.size() / 2; ++i)
-		{//for
+		{//for 
 		//is it light? it's in the wrong side
 		//if disk[i] == light return false
 		if(_colors[i] == DISK_LIGHT)
