@@ -128,35 +128,28 @@ public:
   {//is_sorted	sc 10n+1+1 = 10n+2
 	//starts on the dark half
 	bool stillDark = true;	//sc 1
-	//for i = 0 to n do	sc 10n
-	for(size_t i = 0; i < _colors.size(); ++i)//sc n
+	//for i = 0 to n do	
+	for(size_t i = 0; i < _colors.size() / 2; ++i)
 		{//for
-		//first check for a possible return by seeing if it is the light half yet
-		//if still dark sc 1+max(8,9) = 1+9 = 10
-		if(!stillDark)	//sc 1
-			{//if light	sc max(8,7) = 8
-			//if this is the light half then the disks have to be light
-			//if even one disk on this half is dark then return false
-			if(_colors[i] == DISK_DARK)//sc 7
-				{
-				return false;	//sc 1
-				}
-			}//if light
-		
-		//here we will check to see if stillDark needs to be turned to false yet
-		else	//sc 8+1 = 9
-			{//else	sc 1
-			//check to see if it really is still dark
-			//if disk[i] == light stillDark = false	sc max(8,7) = 8
-			if(_colors[i] == DISK_LIGHT)//sc 7
-				{//if light
-				stillDark = false;	//sc 1
-				}//if light
-			}//else
+		//is it light? it's in the wrong side
+		//if disk[i] == light return false
+		if(_colors[i] == DISK_LIGHT)
+			{
+			//cout << "is sorted light disk on dark side return false\n";
+			return false;
+			}
 		}//for
-    
+	for(size_t i = _colors.size() / 2; i < _colors.size(); ++i)
+		{//for
+		//is it dark? it's in the wrong side
+		//if disk[i] == dark return false
+		if(_colors[i] == DISK_DARK)
+			{
+			return false;
+			}
+		}//for
 	//return true because all the tests have been passed
-	return true;	//sc 1
+	return true;
   }//is_sorted
 };
 
