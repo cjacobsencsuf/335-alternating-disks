@@ -128,9 +128,9 @@ public:
   {//is_sorted
 	//starts on the dark half
 	bool stillDark = true;
-	//for i = 0 to n do	
+	//for i = 0 to n/2 do	
 	for(size_t i = 0; i < _colors.size() / 2; ++i)
-		{//for
+		{//for 
 		//is it light? it's in the wrong side
 		//if disk[i] == light return false
 		if(_colors[i] == DISK_LIGHT)
@@ -138,6 +138,7 @@ public:
 			return false;
 			}
 		}//for
+	  //for i = n/2 to n
 	for(size_t i = _colors.size() / 2; i < _colors.size(); ++i)
 		{//for
 		//is it dark? it's in the wrong side
