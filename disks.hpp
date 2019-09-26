@@ -192,7 +192,7 @@ sorted_disks sort_left_to_right(const disk_state& before)
 	//while ! is sorted do
 	while(!newDisks.is_sorted())
 		{//while
-		//for i = 0 to n do
+		//for i = 0 to n - 1 do
 		for(size_t i = 0; i < newDisks.total_count() - 1; ++i)
 			{//for
 			//if current disk is light and the next is dark then swap
@@ -224,7 +224,7 @@ sorted_disks sort_lawnmower(const disk_state& before)
 	//while ! is sorted do
 	while(!newDisks.is_sorted())
 		{//while
-		//for i = 0 to n do
+		//for i = 0 to n - 1 do
 		for(size_t i = 0; i < newDisks.total_count() - 1; ++i)
 			{//for
 			//if current disk is light and the next is dark then swap
@@ -237,7 +237,7 @@ sorted_disks sort_lawnmower(const disk_state& before)
 				newDisks.swap(i);
 				}//if
 			}//for
-		//for i = n - 1 to 0 do
+		//for i = n - 1 to 1 do
 		for(size_t i = newDisks.total_count() - 1; i > 1; --i)
 			{//for
 			//if current disk is dark and the left is light then swap
