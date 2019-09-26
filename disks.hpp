@@ -181,41 +181,34 @@ public:
 // Algorithm that sorts disks using the left-to-right algorithm.
 sorted_disks sort_left_to_right(const disk_state& before) 
 {//sort_left_to_right
+
 	// check that the input is in alternating format
   	assert(before.is_alternating());
-
+	
 	unsigned numSwaps = 0;
 
-	//make a string to get the length
-	string diskString = before.to_string();
-	
-	//get the length
-	size_t stringLen = diskString.length();	
+	//make a non-const set of disks
+	disk_state newDisks(before);
 	
 	//while ! is sorted do
-	while(!before.is_sorted())
+	while(!newDisks.is_sorted())
 		{//while
 		//for i = 0 to n do
-		for(size_t i = 0; i < stringLen; ++i)
-		//for(size_t i = 0; i < before.size(); ++i)
+		for(size_t i = 0; i < newDisks.total_count(); ++i)
 			{//for
 			//if current disk is light and the next is dark then swap
 			//if (disk[i] == light) && (disk[i+1] == dark) do
-			if((&diskString.at(i) == "L")&&(&diskString.at(i+1) == "D"))
-			//if((before[i] == DISK_LIGHT)&&(before[i+1] == DISK_DARK))
+			if((newDisks.get(i) == DISK_LIGHT)&&(newDisks.get(i+1) == DISK_DARK))
 				{//if
 				++numSwaps;
 				
 				//swap disk[i] and disk[i+1]
-				before.swap(i);
-
-				//update the string
-				diskString = before.to_string();
+				newDisks.swap(i);
 				}//if
 			}//for
 		}//while
 
-  	return sorted_disks(before, numSwaps);
+  	return sorted_disks(newDisks, numSwaps);
 }//sort_left_to_right
 
 // Algorithm that sorts disks using the lawnmower algorithm.
