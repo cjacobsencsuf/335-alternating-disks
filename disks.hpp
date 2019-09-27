@@ -95,7 +95,7 @@ public:
   // is light, and so on for the entire row of disks.
   bool is_alternating() const 
   {//is_alternating
-	//for i= 0 to n do
+	//for i= 0 to 2n do
 	for(size_t i = 0; i < _colors.size(); ++i)
 		{//for
 		//if i % 2 == 0 do
@@ -128,7 +128,7 @@ public:
   {//is_sorted
 	//starts on the dark half
 	bool stillDark = true;
-	//for i = 0 to n/2 do	
+	//for i = 0 to 2n/2 do	
 	for(size_t i = 0; i < _colors.size() / 2; ++i)
 		{//for 
 		//is it light? it's in the wrong side
@@ -138,7 +138,7 @@ public:
 			return false;
 			}
 		}//for
-	  //for i = n/2 to n
+	  //for i = 2n/2 to 2n
 	for(size_t i = _colors.size() / 2; i < _colors.size(); ++i)
 		{//for
 		//is it dark? it's in the wrong side
@@ -193,7 +193,7 @@ sorted_disks sort_left_to_right(const disk_state& before)
 	//while ! is sorted do
 	while(!newDisks.is_sorted())
 		{//while
-		//for i = 0 to n - 1 do
+		//for i = 0 to 2n - 1 do
 		for(size_t i = 0; i < newDisks.total_count() - 1; ++i)
 			{//for
 			//if current disk is light and the next is dark then swap
@@ -225,7 +225,7 @@ sorted_disks sort_lawnmower(const disk_state& before)
 	//while ! is sorted do
 	while(!newDisks.is_sorted())
 		{//while
-		//for i = 0 to n - 1 do
+		//for i = 0 to 2n - 1 do
 		for(size_t i = 0; i < newDisks.total_count() - 1; ++i)
 			{//for
 			//if current disk is light and the next is dark then swap
@@ -238,7 +238,7 @@ sorted_disks sort_lawnmower(const disk_state& before)
 				newDisks.swap(i);
 				}//if
 			}//for
-		//for i = n - 1 to 1 do
+		//for i = 2n - 1 to 1 do
 		for(size_t i = newDisks.total_count() - 1; i > 1; --i)
 			{//for
 			//if current disk is dark and the left is light then swap
